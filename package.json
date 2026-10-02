@@ -1,6 +1,6 @@
 {
   "name": "soundbase-plugin-rf-explorer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "SoundBase plugin for the RF Explorer WSUB1G+ spectrum analyzer over USB.",
   "private": true,
   "repository": {
