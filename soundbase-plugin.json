@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
-  "id": "rf-explorer",
-  "name": "RF Explorer",
+  "id": "rf-explorer-wsub1g-plus",
+  "name": "RF Explorer WSUB1G+",
   "version": "0.1.3",
   "license": "BUSL-1.1",
   "platforms": ["darwin-arm64"],
@@ -16,7 +16,7 @@
   "template": { "name": "soundbase-plugin-template", "version": "1.0.11" },
   "products": [
     {
-      "deviceTypeId": "plugin:rf-explorer/wsub1g-plus",
+      "deviceTypeId": "plugin:rf-explorer-wsub1g-plus/wsub1g-plus",
       "manufacturer": { "id": "rf-explorer", "name": "RF Explorer" },
       "model": {
         "id": "wsub1g-plus",
