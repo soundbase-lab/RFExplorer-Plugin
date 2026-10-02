@@ -17,7 +17,7 @@ import {
 // `deviceTypeId`s declared in soundbase-plugin.json — the shell warns and the
 // host ignores a device naming a product the manifest never declared.
 // `npm run rename` keeps them in step; a test asserts they agree.
-export const PRODUCT = 'plugin:rf-explorer/wsub1g-plus';
+export const PRODUCT = 'plugin:rf-explorer-wsub1g-plus/wsub1g-plus';
 
 // `<Main_Model>` 10 is the WSUB1G+, the one model the driver has been run on
 const productFor = (mainModel) => (mainModel === 10 ? PRODUCT : null);
