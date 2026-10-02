@@ -6,7 +6,12 @@ worth reading yourself.
 
 ## What this repository is
 
-A **SoundBase plugin**: a small network service that provides one or more
+The **RF Explorer plugin for SoundBase**: it drives an RF Explorer WSUB1G+
+handheld spectrum analyzer over its USB serial port. `driver/protocol.md` is
+the protocol as used and what was measured on a real unit — read it before
+changing anything in `driver/`.
+
+A SoundBase plugin is a small network service that provides one or more
 devices to SoundBase over a versioned HTTP contract. SoundBase spawns it as a
 child process and supervises it — handshake, health, crash-restart, teardown.
 
@@ -23,7 +28,8 @@ The author writes device logic. The author never writes UI, IPC, or HTTP.
 soundbase-plugin.json   identity, products, config fields
 main.js                 shell bootstrap — never edit
 adapter.js              device logic — this is the file that changes
-driver/                 optional: protocol-specific code adapter.js uses
+discovery.js            which serial ports are RF Explorers
+driver/                 the RF Explorer protocol, client, serial transport and a fake unit
 __tests__/              contract tests, driven through the real shell
 examples/network-analyzer/   a second complete plugin, over TCP, with a fake device
 docs/                   the guide set; docs/README.md indexes it
