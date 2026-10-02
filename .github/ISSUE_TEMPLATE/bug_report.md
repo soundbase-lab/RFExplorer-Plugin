@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Something in the template itself is wrong or does not work
+about: The RF Explorer plugin does something wrong, or does not find the unit
 labels: bug
 ---
 
@@ -8,28 +8,26 @@ labels: bug
 
 **What you expected**
 
-**Reproduction**
+**The unit**
 
-```sh
-# the commands you ran
+- Model and firmware (shown on the unit at power-on, and in the plugin log as
+  `… is an RF Explorer <model>, firmware <version>`):
+- Operating system:
+- SoundBase version:
+- Plugin version:
+
+**Settings in use**
+
+Frequency range, point count, input stage, DSP mode.
+
+**The plugin log**
+
+```
+# from SoundBase's plugin manager — include the discovery lines
 ```
 
-**Output of `npm run doctor`**
+**If you are running from a checkout: output of `npm run smoke`**
 
 ```
-# this covers the setup: Node, the SDK, the manifest, the adapter, the licence
+# this tells us whether the plugin booted, found the unit and swept it
 ```
-
-**Output of `npm run smoke`**
-
-```
-# paste it — this tells us whether the plugin booted and handshaked at all
-```
-
-**Your `soundbase` block from `package.json`**
-
-```json
-```
-
-That block records which template release you started from and which contract
-version it targets. Without it we are guessing.

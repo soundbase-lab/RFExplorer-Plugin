@@ -1,7 +1,13 @@
 {
-  "name": "soundbase-plugin-template",
-  "version": "0.1.9",
-  "description": "Starting point for a SoundBase plugin: a synthetic spectrum analyzer served by the plugin shell.",
+  "name": "soundbase-plugin-rf-explorer",
+  "version": "0.1.0",
+  "description": "SoundBase plugin for the RF Explorer WSUB1G+ spectrum analyzer over USB.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soundbase-lab/RFExplorer-Plugin.git"
+  },
+  "author": "Matt Dale <matt.dale@soundbase.app>",
   "license": "BUSL-1.1",
   "type": "module",
   "main": "main.js",
@@ -20,7 +26,8 @@
   },
   "dependencies": {
     "@soundbase/plugin-contract": "^0.10.1",
-    "@soundbase/plugin-shell": "^0.10.1"
+    "@soundbase/plugin-shell": "^0.10.1",
+    "serialport": "13.0.0"
   },
   "soundbase": {
     "template": {
