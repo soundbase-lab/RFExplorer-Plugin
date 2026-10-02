@@ -42,10 +42,9 @@ Plug the unit in and switch it on. It appears in SoundBase's device picker as
 - SoundBase's **RBW** field only offers *Auto* for this analyzer. That is
   correct: the unit chooses, and the value it chose is shown as resolved.
 
-To run a working copy in SoundBase Desktop, point `SB_PLUGIN_DIRS` at the
-*parent* of this folder and start the app; the `plugin-system` feature flag
-must be on for your account. [docs/running-in-soundbase.md](docs/running-in-soundbase.md)
-has the detail.
+To run a working copy in SoundBase Desktop, quit the app, then start it with
+`SB_PLUGIN_DIRS` pointing at the *parent* of this folder.
+[docs/running-in-soundbase.md](docs/running-in-soundbase.md) has the detail.
 
 ## What to expect from the instrument
 
