@@ -13,7 +13,7 @@
   },
   "runtime": { "type": "node", "entrypoint": "main.js" },
   "deployment": ["managed"],
-  "template": { "name": "soundbase-plugin-template", "version": "1.0.12" },
+  "template": { "name": "soundbase-plugin-template", "version": "1.0.11" }
   "products": [
     {
       "deviceTypeId": "plugin:rf-explorer-wsub1g-plus/wsub1g-plus",
