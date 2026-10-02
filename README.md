@@ -10,6 +10,20 @@ npm test            # the contract, against a fake unit — nothing attached
 npm run smoke       # boots main.js as the host does; sweeps a real unit if one is plugged in
 ```
 
+## What it supports
+
+| | |
+|---|---|
+| Model | **WSUB1G+ only.** The plugin asks each unit what it is; any other RF Explorer is recognised, logged and left alone. |
+| Firmware | Developed and measured on **03.39**. Other versions are not refused, and have not been run. |
+| Platform | **macOS on Apple silicon.** That is all the manifest declares, so SoundBase Desktop will not install it elsewhere. |
+
+The model is locked on purpose. The things that had to be measured on a real
+unit are the things that differ between models: which DSP modes return valid
+data, how much each input stage shifts the level and whether the unit or the
+PC corrects for it, and how long a sweep takes. A wrong guess at any of them
+gives a trace that looks fine and is not.
+
 ## Using it
 
 Plug the unit in and switch it on. It appears in SoundBase's device picker as
@@ -21,8 +35,17 @@ Plug the unit in and switch it on. It appears in SoundBase's device picker as
   [Silicon Labs' VCP driver](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
   yourself: the plugin ships no drivers and no vendor software, only its own
   code and the npm packages it runs on.
-- When SoundBase lets go of the unit it is put back to 112 points and to the
-  calculator and input stage it was found with.
+- While SoundBase has the unit, its own calculator (max-hold, average) is
+  switched off, so every sweep is a raw one and SoundBase's trace modes do
+  the accumulating. When SoundBase lets go, the unit is put back to 112
+  points and to the calculator and input stage it was found with.
+- SoundBase's **RBW** field only offers *Auto* for this analyzer. That is
+  correct: the unit chooses, and the value it chose is shown as resolved.
+
+To run a working copy in SoundBase Desktop, point `SB_PLUGIN_DIRS` at the
+*parent* of this folder and start the app; the `plugin-system` feature flag
+must be on for your account. [docs/running-in-soundbase.md](docs/running-in-soundbase.md)
+has the detail.
 
 ## What to expect from the instrument
 
@@ -45,10 +68,16 @@ between two points would simply not be seen.
 ### Controls
 
 - **Input stage** — Direct, Attenuator 30 dB, LNA 25 dB. Levels are referred
-  to the antenna connector whichever is chosen.
+  to the antenna connector whichever is chosen: the unit reports the level
+  after the stage, and the plugin adds 30 dB back for the attenuator and
+  takes 25 dB off for the LNA, as the vendor's own software does. The
+  attenuator figure was checked on a real unit; **the LNA figure was not**,
+  because a strong local signal overloaded the LNA during the check.
 - **DSP mode** — Filter (the default, with image rejection) or Fast, which
-  doubles the sweep rate. Fast only works at 112 points on this firmware;
-  asked for at any other point count, the plugin uses Filter and says so.
+  doubles the sweep rate. Fast must use 112 points per sweep: on this
+  firmware, at any other count, the unit accepts the mode and streams a flat
+  line. So Fast asked for at another point count is not applied — the control
+  reads back as Filter. Set Points to 112 first.
 
 ## Layout
 
@@ -71,9 +100,13 @@ with `curl` on a machine with no RF Explorer.
 
 ## Not yet done
 
-- **Other RF Explorer models.** They speak the same protocol but differ in
-  range, input stages and which DSP modes work. A unit that identifies as
-  another model is recognised and left alone until someone has run it.
+- **Other RF Explorer models.** Adding one is a model code in
+  `driver/protocol.js` and `adapter.js`, a product in the manifest, and a run
+  against the real unit to check DSP modes, input-stage offsets and sweep
+  timing. [driver/protocol.md](driver/protocol.md) is what that looked like
+  for the WSUB1G+.
+- **A minimum firmware check.** An older WSUB1G+ firmware is accepted as it
+  is, and may not take the large point counts.
 - **Windows and Intel macOS.** Nothing here is platform-specific, but the
   plugin has only been run on Apple silicon, so that is all `platforms`
   declares.
